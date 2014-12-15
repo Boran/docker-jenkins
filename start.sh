@@ -4,27 +4,28 @@ set -e
 
 PLUGINS_ENDPOINT=http://updates.jenkins-ci.org/latest/
 DATA=/var/lib/jenkins
+wget="wget --no-check-certificate --no-verbose"
 
-# Only need this the first time
-mkdir -p $DATA/plugins
+mkdir -p $DATA/plugins 2>/dev/null
 
 # Here is where we download the plugins if not already done so
 if find $DATA/plugins -maxdepth 0 -empty | read v; then
-#    (cd $DATA/plugins && wget --no-check-certificate $PLUGINS_ENDPOINT/hipchat.hpi)
-    (cd $DATA/plugins && wget --no-check-certificate $PLUGINS_ENDPOINT/greenballs.hpi)
-    (cd $DATA/plugins && wget --no-check-certificate $PLUGINS_ENDPOINT/credentials.hpi)
-    (cd $DATA/plugins && wget --no-check-certificate $PLUGINS_ENDPOINT/ssh-credentials.hpi)
-    (cd $DATA/plugins && wget --no-check-certificate $PLUGINS_ENDPOINT/ssh-agent.hpi)
-    (cd $DATA/plugins && wget --no-check-certificate $PLUGINS_ENDPOINT/git-client.hpi)
-    (cd $DATA/plugins && wget --no-check-certificate $PLUGINS_ENDPOINT/git.hpi)
-#    (cd $DATA/plugins && wget --no-check-certificate $PLUGINS_ENDPOINT/github.hpi)
-#    (cd $DATA/plugins && wget --no-check-certificate $PLUGINS_ENDPOINT/github-api.hpi)
-#    (cd $DATA/plugins && wget --no-check-certificate $PLUGINS_ENDPOINT/ghprb.hpi)
-#    (cd $DATA/plugins && wget --no-check-certificate $PLUGINS_ENDPOINT/github-oauth.hpi)
-#    (cd $DATA/plugins && wget --no-check-certificate $PLUGINS_ENDPOINT/scm-api.hpi)
-    (cd $DATA/plugins && wget --no-check-certificate $PLUGINS_ENDPOINT/postbuild-task.hpi)
-    (cd $DATA/plugins && wget --no-check-certificate $PLUGINS_ENDPOINT/bitbucket.hpi)
-#    (cd $DATA/plugins && wget --no-check-certificate $PLUGINS_ENDPOINT/gradle.hpi)
+  cd $DATA/plugins
+#    $wget $PLUGINS_ENDPOINT/hipchat.hpi
+    $wget $PLUGINS_ENDPOINT/greenballs.hpi
+    $wget $PLUGINS_ENDPOINT/credentials.hpi
+    $wget $PLUGINS_ENDPOINT/ssh-credentials.hpi
+    $wget $PLUGINS_ENDPOINT/ssh-agent.hpi
+    $wget $PLUGINS_ENDPOINT/git-client.hpi
+    $wget $PLUGINS_ENDPOINT/git.hpi
+#    $wget $PLUGINS_ENDPOINT/github.hpi
+#    $wget $PLUGINS_ENDPOINT/github-api.hpi
+#    $wget $PLUGINS_ENDPOINT/ghprb.hpi
+#    $wget $PLUGINS_ENDPOINT/github-oauth.hpi
+#    $wget $PLUGINS_ENDPOINT/scm-api.hpi
+    $wget $PLUGINS_ENDPOINT/postbuild-task.hpi
+    $wget $PLUGINS_ENDPOINT/bitbucket.hpi
+#    $wget $PLUGINS_ENDPOINT/gradle.hpi
 fi
 
 # Set correct permissions
