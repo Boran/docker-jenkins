@@ -1,7 +1,7 @@
 boran-docker-jenkins
 ====================
 
-Jenkins conatiner based on Ubuntu 14:10
+Jenkins conatiner based on Ubuntu 14.04
 
  * Pull the latest version of jenkins from pkg.jenkins-ci.org
  * Install some standard plugins
