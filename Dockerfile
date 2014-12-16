@@ -16,8 +16,7 @@ RUN echo "deb http://pkg.jenkins-ci.org/debian binary/" > /etc/apt/sources.list.
     wget -q -O - http://pkg.jenkins-ci.org/debian/jenkins-ci.org.key | apt-key add - && \
     apt-get update && \
     apt-get install -y jenkins && \
-    apt-get clean -y && \
-    rm /bin/sh && ln -s /bin/bash /bin/sh
+    apt-get clean -y 
 
 # Need SSH: todo, review security
 RUN mkdir /var/run/sshd && \
@@ -25,15 +24,16 @@ RUN mkdir /var/run/sshd && \
     echo " IdentityFile /var/lib/jenkins/.ssh/id_rsa" >> /etc/ssh/ssh_config && \
     echo " StrictHostKeyChecking no" >> /etc/ssh/ssh_config
 
-# Expose volume and set jenkins-y things
+# Expose data to containers
 VOLUME /var/lib/jenkins
+VOLUME /var/log/jenkins
 ENV JENKINS_HOME /var/lib/jenkins
 
-EXPOSE 8080
+WORKDIR /var/lib/jenkins
 
 ADD ./start.sh /start.sh
 RUN chmod 755 /start.sh 
-
+EXPOSE 8080
 CMD ["/bin/bash", "/start.sh"]
 
 
