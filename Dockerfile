@@ -18,7 +18,8 @@ RUN echo "deb http://pkg.jenkins-ci.org/debian binary/" > /etc/apt/sources.list.
     apt-get install -y jenkins && \
     apt-get clean -y 
 
-# Need SSH: todo, review security
+# Need SSH: 
+# todo: review need/security
 RUN mkdir /var/run/sshd && \
     echo " ForwardAgent yes" >> /etc/ssh/ssh_config && \
     echo " IdentityFile /var/lib/jenkins/.ssh/id_rsa" >> /etc/ssh/ssh_config && \
