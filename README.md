@@ -14,3 +14,6 @@ TODO, document stuff such as
 - creating the .ssh trust in /home/builder
 - add build/test automation into /home/builder, calling that from jenkins.
 
+
+docker build -t . boran/jenkins
+
